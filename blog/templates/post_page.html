@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+  <h2>New Post</h2>
+  {% if alert%} {{alert}} {% endif %}
+  {% if post %}
+  {{post.date}} <br>
+  Author: {{post.author}} <br>
+  <h2>{{post.title}} </h2> 
+  {{post.content}}<br>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Comment</button>
+  </form>
+  {% for com in comments %}
+  {{com.date}} <br>
+  {{com.author}}: <br>
+  {{com.comment}} <br>
+  <br>
+  {% endfor %}
+  {% endif %}
+{% endblock %}
